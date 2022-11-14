@@ -1,0 +1,11 @@
+.board {
+    margin-top: 20vh;
+    display: grid;
+    grid-template: repeat(3, 100px) / repeat(3, 100px);
+    justify-content: center;
+}
+
+.square {
+    border: solid black 1px;
+
+}
