@@ -1,17 +1,57 @@
 const Gameboard = (function () {
-    const gameboard = ['x', 'x', 'x', 'o', 'x', 'o', 'o', 'o', 'x']
-    return gameboard
+    const gameboard = ['x']
+
+    return { gameboard }
 })()
+const Game = (function (gameBoard) {
+    let isPlayerX = true
 
-const playerFactory = (name) => {
-    const sayName = () => { console.log(name) }
-    return { name, sayName }
-}
-
-const renderArray = (array) => {
     const gridDivs = document.querySelectorAll(".square")
-    gridDivs.forEach(div => { div.textContent = array[div.dataset.id] })
 
-}
+    const playerFactory = (name, symbol) => {
+        const sayName = () => { console.log(name) }
+        return { name, symbol, sayName }
+    }
 
-renderArray(Gameboard)
+    const renderArray = (array) => {
+
+        gridDivs.forEach(div => { div.textContent = array[div.dataset.id] })
+
+    }
+
+    const addMark = function (e) {
+        Gameboard[e.target.dataset.id] = getPlayerSymbol(isPlayerX)
+        renderArray(gameBoard)
+        togglePlayer(isPlayerX)
+
+    }
+
+
+    const getPlayerSymbol = function (bool) {
+        if (bool == true) {
+            return 'X'
+        }
+        else { return 'O' }
+    }
+
+    const togglePlayer = function (bool) {
+        if (isPlayerX) {
+            isPlayerX = false
+        }
+        else { isPlayerX = true }
+    }
+    gridDivs.forEach(div => div.addEventListener('click', addMark))
+
+
+    return {}
+})(Gameboard)
+
+
+
+
+
+
+
+playerO = playerFactory('me', 'X')
+playerX = playerFactory('you', 'O')
+
