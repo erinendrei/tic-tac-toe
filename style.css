@@ -22,7 +22,8 @@
 
 .player {
     display: flex;
-    gap: 30px;
+    flex-flow: column wrap;
+    gap: 5px;
 }
 
 .player-container {
@@ -30,4 +31,22 @@
     justify-content: center;
     gap: 30px;
     margin-top: 10vh;
+}
+
+#won {
+    margin-top: 5vh;
+}
+
+button {
+    margin-top: 5vh;
+    padding: 10px;
+
+}
+
+.game-over {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }

@@ -56,6 +56,7 @@ const Gameboard = (function () {
         newGameButton.classList.remove("inactive")
     }
     const showWonMessage = (player) => {
+        wonDiv.classList.remove('inactive')
         wonDiv.textContent = `${player.name} won!`
     }
     const gameIsWon = (player) => {
@@ -69,7 +70,9 @@ const Gameboard = (function () {
 
 const playerFactory = (name, symbol, code) => {
     const sayName = () => { console.log(name) }
-    return { name, symbol, code, sayName }
+
+    const setName = (newName) => { name = newName }
+    return { name, symbol, code, sayName, setName }
 }
 
 const Game = (function (gameBoard) {
@@ -88,28 +91,44 @@ const Game = (function (gameBoard) {
         return player
     }
 
-    const setPlayer = (player, name) => {
+    const setPlayerName = (player, name) => {
         player.name = name
     }
 
-    const addPlayerInputListeners = (player) => {
-        let playerCode = player.code
-        let input = document.getElementById(`${playerCode}_name`)
+    const setPlayerSymbol = (player, symbol) => {
+        player.symbol = symbol
+    }
+
+    const addKeyupListeners = (input, player, nameOrSymbol) => {
         input.addEventListener("keyup", function (event) {
             event.preventDefault();
-            let nameDiv = document.getElementById(`${playerCode}_name_value`)
+            console.log(player.code)
+            let div = document.getElementById(`${player.code}_${nameOrSymbol}_value`)
             if (event.code === 'Enter') {
-                nameDiv.textContent = input.value
-                nameDiv.classList.remove('inactive');
+                div.textContent = input.value
+                div.classList.remove('inactive');
                 input.classList.add('inactive')
-                setPlayer(player, input.value)
+                if (nameOrSymbol == 'name') {
+                    setPlayerName(player, input.value)
+                }
+                else if (nameOrSymbol == 'symbol') {
+                    setPlayerSymbol(player, input.value)
+                }
             }
         })
+    }
+    const addInputListeners = (player) => {
+        let inputName = document.getElementById(`${player.code}_name`)
+        let inputSymbol = document.getElementById(`${player.code}_symbol`)
+
+        addKeyupListeners(inputName, player, 'name')
+        addKeyupListeners(inputSymbol, player, 'symbol')
+
 
     }
 
-    addPlayerInputListeners(playerX)
-    addPlayerInputListeners(playerO)
+    addInputListeners(playerX)
+    addInputListeners(playerO)
 
 
 
