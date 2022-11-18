@@ -1,5 +1,9 @@
+:root {
+    font-family: sans-serif;
+}
+
 .board {
-    margin-top: 20vh;
+    margin-top: 10vh;
     display: grid;
     grid-template: repeat(3, 100px) / repeat(3, 100px);
     justify-content: center;
@@ -10,9 +14,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: sans-serif
 }
 
 .inactive {
     display: none;
+}
+
+.player {
+    display: flex;
+    gap: 30px;
+}
+
+.player-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10vh;
 }

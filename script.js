@@ -67,15 +67,15 @@ const Gameboard = (function () {
     return { gameboard, gridDivs, addMark, renderArray, addCellListeners }
 })()
 
-const playerFactory = (name, symbol) => {
+const playerFactory = (name, symbol, code) => {
     const sayName = () => { console.log(name) }
-    return { name, symbol, sayName }
+    return { name, symbol, code, sayName }
 }
 
 const Game = (function (gameBoard) {
 
-    const playerX = playerFactory('Player 1', 'X')
-    const playerO = playerFactory('Player 2', 'O')
+    const playerX = playerFactory('Player 1', 'X', 'player_1')
+    const playerO = playerFactory('Player 2', 'O', 'player_2')
 
     let currentPlayer = playerX
 
@@ -87,6 +87,32 @@ const Game = (function (gameBoard) {
 
         return player
     }
+
+    const setPlayer = (player, name) => {
+        player.name = name
+    }
+
+    const addPlayerInputListeners = (player) => {
+        let playerCode = player.code
+        let input = document.getElementById(`${playerCode}_name`)
+        input.addEventListener("keyup", function (event) {
+            event.preventDefault();
+            let nameDiv = document.getElementById(`${playerCode}_name_value`)
+            if (event.code === 'Enter') {
+                nameDiv.textContent = input.value
+                nameDiv.classList.remove('inactive');
+                input.classList.add('inactive')
+                setPlayer(player, input.value)
+            }
+        })
+
+    }
+
+    addPlayerInputListeners(playerX)
+    addPlayerInputListeners(playerO)
+
+
+
 
     return { togglePlayer, currentPlayer, playerX, playerO }
 })(Gameboard)

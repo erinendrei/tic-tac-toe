@@ -10,11 +10,25 @@
 </head>
 
 <body>
-    <label for="player_1_name">Player 1:</label>
-    <input type="text" id="player_1_name">
+    <div class="player-container">
+        <div class="player">
+            <label for="player_1_name">Player 1:</label>
+            <input type="text" id="player_1_name">
+            <div class="inactive" id="player_1_name_value"></div>
+            <label for="player_1_symbol">Symbol:</label>
+            <input type="text" id="player_1_symbol">
+            <div class="inactive" id="player_1_symbol_value"></div>
+        </div>
 
-    <label for="player_2_name">Player 2:</label>
-    <input type="text" id="player_2_name">
+        <div class="player">
+            <label for="player_2_name">Player 2:</label>
+            <input type="text" id="player_2_name">
+            <div class="inactive" id="player_2_name_value"></div>
+            <label for="player_2_symbol">Symbol:</label>
+            <input type="text" id="player_2_symbol">
+            <div class="inactive" id="player_2_symbol_value"></div>
+        </div>
+    </div>
 
     <div class="board">
         <div class="square" data-id="0"></div>
