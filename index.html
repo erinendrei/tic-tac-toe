@@ -9,7 +9,12 @@
   </head>
 
   <body>
-    <div class="player-container">
+    <h1>Tic-Tac-Toe</h1>
+    <div class="buttons">
+      <button id="editPlayerData">Edit Player Data</button>
+      <button id="close" class="inactive">Close</button>
+    </div>
+    <div class="inactive player-container">
       <div class="player">
         <label for="player_1_name">Player 1:</label>
         <input type="text" id="player_1_name" />
@@ -41,7 +46,7 @@
       <div class="square" data-id="8"></div>
     </div>
     <div class="game-over">
-      <div id="won"></div>
+      <div id="result"></div>
       <button id="new-game" class="inactive">New Game</button>
     </div>
   </body>

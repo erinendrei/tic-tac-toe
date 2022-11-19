@@ -2,11 +2,26 @@
   font-family: sans-serif;
 }
 
+h1 {
+  text-align: center;
+  margin-top: 10vh;
+}
+
+input {
+  width: 80px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
 .board {
   margin-top: 10vh;
   display: grid;
   grid-template: repeat(3, 100px) / repeat(3, 100px);
   justify-content: center;
+  gap: 5px;
 }
 
 .square {
@@ -14,6 +29,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 2px 2px rgb(9, 9, 9);
 }
 
 .inactive {
@@ -30,10 +46,14 @@
   display: flex;
   justify-content: center;
   gap: 30px;
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 
-#won {
+.player-container.inactive {
+  display: none;
+}
+
+#result {
   margin-top: 5vh;
 }
 

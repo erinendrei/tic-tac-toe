@@ -53,11 +53,11 @@ const Gameboard = (function () {
     });
   };
 
-  const wonDiv = document.getElementById("won");
+  const resultDiv = document.getElementById("result");
 
   const restartGame = () => {
     newGameButton.classList.add("inactive");
-    wonDiv.classList.add("inactive");
+    resultDiv.classList.add("inactive");
     for (let i = 0; i < gameboard.length; i++) {
       playerMoves["player_1"][i] = "";
       playerMoves["player_2"][i] = "";
@@ -77,15 +77,15 @@ const Gameboard = (function () {
     newGameButton.classList.remove("inactive");
   };
   const showWonMessage = (player) => {
-    wonDiv.textContent = `${player.name} won!`;
+    resultDiv.textContent = `${player.name} won!`;
   };
 
   const showTieMessage = () => {
-    wonDiv.textContent = `It's a tie.`;
+    resultDiv.textContent = `It's a tie.`;
   };
 
   const gameOver = () => {
-    wonDiv.classList.remove("inactive");
+    resultDiv.classList.remove("inactive");
     removeCellListeners();
     showNewGameButton();
   };
@@ -162,6 +162,20 @@ const Game = (function (gameBoard) {
 
   addInputListeners(playerX);
   addInputListeners(playerO);
+
+  const editPlayerBtn = document.getElementById("editPlayerData");
+  const closeButton = document.getElementById("close");
+  const playerContainer = document.querySelector(".player-container");
+  closeButton.addEventListener("click", () => {
+    playerContainer.classList.add("inactive");
+    editPlayerBtn.classList.remove("inactive");
+    closeButton.classList.add("inactive");
+  });
+  editPlayerBtn.addEventListener("click", () => {
+    playerContainer.classList.remove("inactive");
+    closeButton.classList.remove("inactive");
+    editPlayerBtn.classList.add("inactive");
+  });
 
   return { togglePlayer, resetDisplay, currentPlayer, playerX, playerO };
 })(Gameboard);
