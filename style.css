@@ -60,6 +60,20 @@ input {
 button {
   margin-top: 5vh;
   padding: 10px;
+  border-radius: 15px;
+  background-color: white;
+  border: black solid 1px;
+}
+
+button:hover,
+.square:hover {
+  background-color: darkseagreen;
+  transform: scale(1.05);
+}
+
+h1:hover {
+  color: darkseagreen;
+  transform: scale(1.05);
 }
 
 .game-over {
