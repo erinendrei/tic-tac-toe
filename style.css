@@ -1,52 +1,50 @@
 :root {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 .board {
-    margin-top: 10vh;
-    display: grid;
-    grid-template: repeat(3, 100px) / repeat(3, 100px);
-    justify-content: center;
+  margin-top: 10vh;
+  display: grid;
+  grid-template: repeat(3, 100px) / repeat(3, 100px);
+  justify-content: center;
 }
 
 .square {
-    border: solid black 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border: solid black 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inactive {
-    display: none;
+  display: none;
 }
 
 .player {
-    display: flex;
-    flex-flow: column wrap;
-    gap: 5px;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 5px;
 }
 
 .player-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 10vh;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10vh;
 }
 
 #won {
-    margin-top: 5vh;
+  margin-top: 5vh;
 }
 
 button {
-    margin-top: 5vh;
-    padding: 10px;
-
+  margin-top: 5vh;
+  padding: 10px;
 }
 
 .game-over {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
