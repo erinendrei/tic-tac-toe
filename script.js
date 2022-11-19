@@ -1,5 +1,6 @@
 const Gameboard = (function () {
   const gameboard = [];
+  const playerMoves = { player_1: [], player_2: [] };
   const gridDivs = document.querySelectorAll(".square");
   let moveCount = 0;
 
@@ -31,10 +32,12 @@ const Gameboard = (function () {
   };
 
   const addMark = function (e) {
-    gameboard[e.target.dataset.id] = Game.currentPlayer.symbol;
+    let mark = Game.currentPlayer.symbol;
+    gameboard[e.target.dataset.id] = mark;
+    playerMoves[Game.currentPlayer.code][e.target.dataset.id] = mark;
     moveCount++;
     renderArray(gameboard);
-    checkArray(gameboard, Game.currentPlayer);
+    checkArray(playerMoves[Game.currentPlayer.code], Game.currentPlayer);
     Game.currentPlayer = Game.togglePlayer(Game.currentPlayer);
   };
 
@@ -56,11 +59,14 @@ const Gameboard = (function () {
     newGameButton.classList.add("inactive");
     wonDiv.classList.add("inactive");
     for (let i = 0; i < gameboard.length; i++) {
+      playerMoves["player_1"][i] = "";
+      playerMoves["player_2"][i] = "";
       gameboard[i] = "";
     }
     renderArray(gameboard);
     addCellListeners();
     Game.currentPlayer = Game.playerX;
+    Game.resetDisplay();
     moveCount = 0;
   };
 
@@ -118,10 +124,21 @@ const Game = (function (gameBoard) {
     return player;
   };
 
+  const resetDisplay = () => {
+    const divs = document.querySelectorAll("[id$=value]");
+    divs.forEach((div) => {
+      div.classList.add("inactive");
+    });
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((inp) => {
+      inp.classList.remove("inactive");
+      inp.value = "";
+    });
+  };
+
   const addKeyupListeners = (input, player, nameOrSymbol) => {
     input.addEventListener("keyup", function (event) {
       event.preventDefault();
-      console.log(player.code);
       let div = document.getElementById(`${player.code}_${nameOrSymbol}_value`);
       if (event.code === "Enter") {
         div.textContent = input.value;
@@ -146,5 +163,5 @@ const Game = (function (gameBoard) {
   addInputListeners(playerX);
   addInputListeners(playerO);
 
-  return { togglePlayer, currentPlayer, playerX, playerO };
+  return { togglePlayer, resetDisplay, currentPlayer, playerX, playerO };
 })(Gameboard);
